@@ -22,7 +22,7 @@ print(physical_devices)
 USERPATH = '/Users/stefano/Desktop//SeniorProject/YOCO/'
 
 def main():
-    model_name = 'YOCOv0.1-ail'
+    model_name = 'YOCOv0.1-ailMoon'
     
     # Training data/variable setup
     box_anno_path = USERPATH + "model_data/annotations/box_anno_ailMoon.txt"
