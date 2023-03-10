@@ -1,0 +1,4 @@
+crater
+dune
+mountain 
+rock
