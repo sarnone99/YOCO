@@ -25,7 +25,7 @@ def main():
     model_name = 'YOCOv0.1-ailMoon'
     
     # Training data/variable setup
-    box_anno_path = USERPATH + "model_data/annotations/box_anno_ailMoon.txt"
+    box_anno_path = USERPATH + "model_data/annotations/moon_anno.txt"
     dom_anno_path = USERPATH + "model_data/annotations/dom_anno_ailMoon.txt"
     classes_path = USERPATH + 'model_data/class_lists/ailMoon_classes.txt'
     log_dir = USERPATH + 'logs/' + model_name  + '/'
@@ -34,7 +34,7 @@ def main():
     class_names = get_classes(classes_path)
     num_classes = len(class_names)
     anchors = get_anchors(anchors_path)
-    input_shape = (1024,1024) # multiple of 32, hw
+    input_shape = (512,512) # multiple of 32, hw
 
     # Create YOCO model
     model = create_model(input_shape, anchors, num_classes,
