@@ -25,8 +25,8 @@ def main():
     model_name = 'YOCOv0.1-ailMars'
     
     # Training data/variable setup
-    box_anno_path = "model_data/annotations/bennu_anno.txt"
-    dom_anno_path = "model_data/annotations/dom_bennu.txt"
+    box_anno_path = USERPATH + "model_data/annotations/bennu_anno.txt"
+    dom_anno_path = USERPATH + "model_data/annotations/dom_bennu.txt"
     classes_path = USERPATH + 'model_data/class_lists/ailBennu_classes.txt'
     log_dir = USERPATH + 'logs/' + model_name  + '/'
     
