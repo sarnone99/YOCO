@@ -19,14 +19,14 @@ physical_devices = tf.config.list_physical_devices('GPU')
 print(physical_devices)
 
 #CHANGE USERPATH
-USERPATH = '/Users/stefano/Desktop//SeniorProject/YOCO/'
+USERPATH = '/content/YOCO/'
 
 def main():
-    model_name = 'YOCOv0.1-ailBennu'
+    model_name = 'YOCOv0.1-ailMars'
     
     # Training data/variable setup
-    box_anno_path = USERPATH + "model_data/annotations/box_anno_ailBennu.txt"
-    dom_anno_path = USERPATH + "model_data/annotations/dom_anno_ailBennu.txt"
+    box_anno_path = "model_data/annotations/bennu_anno.txt"
+    dom_anno_path = "model_data/annotations/dom_bennu.txt"
     classes_path = USERPATH + 'model_data/class_lists/ailBennu_classes.txt'
     log_dir = USERPATH + 'logs/' + model_name  + '/'
     
@@ -34,7 +34,7 @@ def main():
     class_names = get_classes(classes_path)
     num_classes = len(class_names)
     anchors = get_anchors(anchors_path)
-    input_shape = (1024,1024) # multiple of 32, hw
+    input_shape = (416,416) # multiple of 32, hw
 
     # Create YOCO model
     model = create_model(input_shape, anchors, num_classes,
@@ -44,8 +44,8 @@ def main():
     # Callbacks
     logging = TensorBoard(log_dir=log_dir)
     checkpoint = ModelCheckpoint(filepath=log_dir + model_name + '_ep{epoch:03d}.ckpt', monitor='yolo_loss', save_weights_only=True, verbose=1)
-    reduce_lr = ReduceLROnPlateau(monitor='yolo_loss', factor=0.1, patience=5, verbose=1)
-    early_stopping = EarlyStopping(monitor='yolo_loss', min_delta=0, patience=10, verbose=1)
+    reduce_lr = ReduceLROnPlateau(monitor='yolo_loss', factor=0.1, patience=3, verbose=1)
+    early_stopping = EarlyStopping(monitor='yolo_loss', min_delta=0, patience=3, verbose=1)
     nan_term = tf.keras.callbacks.TerminateOnNaN()
     csv_logger = CSVLogger(log_dir + model_name + '_training_log.csv', append=True, separator=',')
 
